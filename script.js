@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadList() {
     const content = document.getElementById('content');
     const participations = JSON.parse(localStorage.getItem('participations')) || [];
-    let html = '<h2>Liste des Cotisations</h2>';
+    let html = `<h2>Liste des Cotisations</h2>
+                <button class="btn btn-primary mt-3 mb-5" onclick="loadAddForm()">Ajouter Des informations</button>
+    `;
     if (participations.length > 0) {
         html += `<table class="table table-striped">
                     <thead>
@@ -13,6 +15,7 @@ function loadList() {
                             <th>Nom</th>
                             <th>Prénom</th>
                             <th>Montant</th>
+                            <th>Taille</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -22,6 +25,7 @@ function loadList() {
                         <td>${participation.nom}</td>
                         <td>${participation.prenom}</td>
                         <td>${participation.montant}</td>
+                        <td>${participation.taille}</td>
                         <td>
                             <button class="btn btn-warning btn-sm" onclick="editParticipation(${index})">Edit</button>
                             <button class="btn btn-danger btn-sm" onclick="deleteParticipation(${index})">Delete</button>
@@ -31,7 +35,7 @@ function loadList() {
         html += `</tbody>
                 </table>`;
     } else {
-        html += '<p>Aucune cotisation enregistrée.</p>';
+        html += '<p class="mt-5">Aucune cotisation enregistrée.</p>';
     }
     content.innerHTML = html;
 }
@@ -53,6 +57,17 @@ function loadAddForm() {
                 <label for="montant" class="form-label">Montant</label>
                 <input type="number" class="form-control" id="montant" required>
             </div>
+            <div class="mb-3">
+                <label for="taille" class="form-label">Taille</label>
+                <select class="form-control" id="taille" required>
+                    <option value="XXL">XXL</option>
+                    <option value="XL">XL</option>
+                    <option value="L">L</option>
+                    <option value="M">M</option>
+                    <option value="S">S</option>
+                    <option value="XS">XS</option>
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
     `;
@@ -64,8 +79,9 @@ function addParticipation(event) {
     const nom = document.getElementById('nom').value;
     const prenom = document.getElementById('prenom').value;
     const montant = document.getElementById('montant').value;
+    const taille = document.getElementById('taille').value;
 
-    const participation = { nom, prenom, montant };
+    const participation = { nom, prenom, montant, taille };
     const participations = JSON.parse(localStorage.getItem('participations')) || [];
     participations.push(participation);
     localStorage.setItem('participations', JSON.stringify(participations));
@@ -91,6 +107,19 @@ function editParticipation(index) {
                 <label for="montant" class="form-label">Montant</label>
                 <input type="number" class="form-control" id="montant" value="${participation.montant}" required>
             </div>
+            <div class="mb-3">
+                <label for="taille" class="form-label">Taille</label>
+                <select class="form-control" id="taille" required>
+                    <option value="XXL" ${participation.taille === 'XXL' ? 'selected' : ''}>XXL</option>
+                    <option value="XL" ${participation.taille === 'XL' ? 'selected' : ''}>XL</option>
+                    <option value="L" ${participation.taille === 'L' ? 'selected' : ''}>L</option>
+                    <option value="M" ${participation.taille === 'M' ? 'selected' : ''}>M</option>
+                    <option value="M" ${participation.taille === 'S' ? 'selected' : ''}>M</option>
+                    <option value="M" ${participation.taille === 'XS' ? 'selected' : ''}>M</option>
+
+
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary">Modifier</button>
         </form>
     `;
@@ -102,8 +131,9 @@ function updateParticipation(event, index) {
     const nom = document.getElementById('nom').value;
     const prenom = document.getElementById('prenom').value;
     const montant = document.getElementById('montant').value;
+    const taille = document.getElementById('taille').value;
 
-    const participation = { nom, prenom, montant };
+    const participation = { nom, prenom, montant, taille };
     const participations = JSON.parse(localStorage.getItem('participations'));
     participations[index] = participation;
     localStorage.setItem('participations', JSON.stringify(participations));
