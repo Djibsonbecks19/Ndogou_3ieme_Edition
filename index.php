@@ -1,3 +1,7 @@
+<?php
+require_once "assets/database.php";
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
