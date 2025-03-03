@@ -12,7 +12,6 @@ function loadList() {
             html += `<tr>
                         <td>${participation.nom}</td>
                         <td>${participation.prenom}</td>
-                        <td>${participation.telephone}</td>
                         <td>${participation.montant}</td>
                         <td>
                             <button class="btn btn-warning btn-sm" onclick="editParticipation(${index})">Edit</button>
@@ -41,10 +40,6 @@ function loadAddForm() {
                 <input type="text" class="form-control" id="prenom" required>
             </div>
             <div class="mb-3">
-                <label for="telephone" class="form-label">Téléphone</label>
-                <input type="text" class="form-control" id="telephone" required>
-            </div>
-            <div class="mb-3">
                 <label for="montant" class="form-label">Montant</label>
                 <input type="number" class="form-control" id="montant" required>
             </div>
@@ -58,9 +53,7 @@ function addParticipation(event) {
     event.preventDefault();
     const nom = document.getElementById('nom').value;
     const prenom = document.getElementById('prenom').value;
-    const telephone = document.getElementById('telephone').value;
     const montant = document.getElementById('montant').value;
-
     const participation = { nom, prenom, telephone, montant };
     const participations = JSON.parse(localStorage.getItem('participations')) || [];
     participations.push(participation);
@@ -84,10 +77,6 @@ function editParticipation(index) {
                 <input type="text" class="form-control" id="prenom" value="${participation.prenom}" required>
             </div>
             <div class="mb-3">
-                <label for="telephone" class="form-label">Téléphone</label>
-                <input type="text" class="form-control" id="telephone" value="${participation.telephone}" required>
-            </div>
-            <div class="mb-3">
                 <label for="montant" class="form-label">Montant</label>
                 <input type="number" class="form-control" id="montant" value="${participation.montant}" required>
             </div>
@@ -101,7 +90,6 @@ function updateParticipation(event, index) {
     event.preventDefault();
     const nom = document.getElementById('nom').value;
     const prenom = document.getElementById('prenom').value;
-    const telephone = document.getElementById('telephone').value;
     const montant = document.getElementById('montant').value;
 
     const participation = { nom, prenom, telephone, montant };
