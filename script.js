@@ -12,23 +12,23 @@ function loadList() {
                         <tr>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Téléphone</th>
                             <th>Montant</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>`;
         participations.forEach((participation, index) => {
-                html += `<tr>
-                            <td>${participation.nom}</td>
-                            <td>${participation.prenom}</td>
-                            <td>${participation.montant}</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm" onclick="editParticipation(${index})">Edit</button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteParticipation(${index})">Delete</button>
-                            </td>
-                        </tr>`;
+            html += `<tr>
+                        <td>${participation.nom}</td>
+                        <td>${participation.prenom}</td>
+                        <td>${participation.montant}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" onclick="editParticipation(${index})">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteParticipation(${index})">Delete</button>
+                        </td>
+                    </tr>`;
         });
-        html +=     `</tbody>
+        html += `</tbody>
                 </table>`;
     } else {
         html += '<p>Aucune cotisation enregistrée.</p>';
@@ -64,6 +64,7 @@ function addParticipation(event) {
     const nom = document.getElementById('nom').value;
     const prenom = document.getElementById('prenom').value;
     const montant = document.getElementById('montant').value;
+
     const participation = { nom, prenom, montant };
     const participations = JSON.parse(localStorage.getItem('participations')) || [];
     participations.push(participation);
