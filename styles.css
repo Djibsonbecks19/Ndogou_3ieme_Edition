@@ -61,14 +61,14 @@ body {
 /* Ensure the text inside the badge is centered */
 .badge h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #ffd700;
     white-space: nowrap; /* Prevents text from wrapping */
 }
 
 .display-4 {
-    font-size: 1.7rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #ffd700;
 }
