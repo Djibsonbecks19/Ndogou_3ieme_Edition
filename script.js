@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    loadList();
-    lookUp();
+    loadList(); 
+    lookUp();  
 });
 
 function loadList() {
     const content = document.getElementById('content');
     const participations = JSON.parse(localStorage.getItem('participations')) || [];
     let html = `<h2>Liste des Cotisations</h2>
-                <input type="text" class="form-control" id="lookup">
+                <input type="text" class="form-control" id="lookup" placeholder="Search...">
                 <button class="btn btn-primary mt-3 mb-5" onclick="loadAddForm()">Ajouter Des informations</button>
     `;
     if (participations.length > 0) {
@@ -40,8 +40,9 @@ function loadList() {
         html += '<p class="mt-5">Aucune cotisation enregistrée.</p>';
     }
     content.innerHTML = html;
-}
 
+    lookUp();
+}
 function loadAddForm() {
     const content = document.getElementById('content');
     const html = `
@@ -181,7 +182,6 @@ function lookUp() {
         });
     });
 }
-
 
 
 
