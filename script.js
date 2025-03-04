@@ -84,7 +84,12 @@ function addParticipation(event) {
     const montant = document.getElementById('montant').value;
     const taille = document.getElementById('taille').value;
 
-    const participation = { nom, prenom, montant, taille };
+    const participation = { 
+        nom, 
+        prenom, 
+        montant, 
+        taille 
+    };
     const participations = JSON.parse(localStorage.getItem('participations')) || [];
     participations.push(participation);
     localStorage.setItem('participations', JSON.stringify(participations));
@@ -117,8 +122,8 @@ function editParticipation(index) {
                     <option value="XL" ${participation.taille === 'XL' ? 'selected' : ''}>XL</option>
                     <option value="L" ${participation.taille === 'L' ? 'selected' : ''}>L</option>
                     <option value="M" ${participation.taille === 'M' ? 'selected' : ''}>M</option>
-                    <option value="M" ${participation.taille === 'S' ? 'selected' : ''}>M</option>
-                    <option value="M" ${participation.taille === 'XS' ? 'selected' : ''}>M</option>
+                    <option value="M" ${participation.taille === 'S' ? 'selected' : ''}>S</option>
+                    <option value="M" ${participation.taille === 'XS' ? 'selected' : ''}>XS</option>
 
 
                 </select>
@@ -136,7 +141,12 @@ function updateParticipation(event, index) {
     const montant = document.getElementById('montant').value;
     const taille = document.getElementById('taille').value;
 
-    const participation = { nom, prenom, montant, taille };
+    const participation = { 
+        nom, 
+        prenom, 
+        montant, 
+        taille 
+    };
     const participations = JSON.parse(localStorage.getItem('participations'));
     participations[index] = participation;
     localStorage.setItem('participations', JSON.stringify(participations));
