@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadList();
+    lookUp();
 });
 
 function loadList() {
     const content = document.getElementById('content');
     const participations = JSON.parse(localStorage.getItem('participations')) || [];
     let html = `<h2>Liste des Cotisations</h2>
+                <input type="text" class="form-control" id="lookup">
                 <button class="btn btn-primary mt-3 mb-5" onclick="loadAddForm()">Ajouter Des informations</button>
     `;
     if (participations.length > 0) {
@@ -151,3 +153,53 @@ function loadAbout() {
     const content = document.getElementById('content');
     content.innerHTML = '<h2>A Propos</h2><p>Informations sur l\'application de gestion des cotisations.</p>';
 }
+
+function lookUp() {
+    document.getElementById("lookup").addEventListener("input", function () {
+        /* 
+            Extraction de la valeur recherchée en lowercase et extraction 
+            de toutes les lignes aussi
+        */
+        const lookupValue = this.value.trim().toLowerCase();
+        const tableRows = document.querySelectorAll("table tbody tr");
+
+        tableRows.forEach((row) => {
+            /* 
+                transforme la collection html en array en prennant chaque colonne 
+                de la ligne et transforme en String contenant toute les valeurs de la ligne
+            */
+            const rowText = Array.from(row.cells)
+                .map(cell => cell.textContent.trim().toLowerCase())
+                .join(" ");
+
+            /* 
+                Si le String contenant les colonnes de la ligne contient une colonne typique 
+                à la valeur recherchée ou contanent une partie de cette valeur recherchée
+                cette ligne reste afficher sinon elle est cachée
+            */    
+            row.style.display = rowText.includes(lookupValue) ? "" : "none";
+        });
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
