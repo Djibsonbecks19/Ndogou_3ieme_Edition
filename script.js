@@ -122,8 +122,8 @@ function editParticipation(index) {
                     <option value="XL" ${participation.taille === 'XL' ? 'selected' : ''}>XL</option>
                     <option value="L" ${participation.taille === 'L' ? 'selected' : ''}>L</option>
                     <option value="M" ${participation.taille === 'M' ? 'selected' : ''}>M</option>
-                    <option value="M" ${participation.taille === 'S' ? 'selected' : ''}>S</option>
-                    <option value="M" ${participation.taille === 'XS' ? 'selected' : ''}>XS</option>
+                    <option value="S" ${participation.taille === 'S' ? 'selected' : ''}>S</option>
+                    <option value="XS" ${participation.taille === 'XS' ? 'selected' : ''}>XS</option>
 
 
                 </select>
